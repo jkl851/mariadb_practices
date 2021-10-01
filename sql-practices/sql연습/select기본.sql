@@ -1,4 +1,4 @@
--- select 연습alter
+-- select 연습
 select * from departments;
 select dept_no, dept_name from departments;
 
