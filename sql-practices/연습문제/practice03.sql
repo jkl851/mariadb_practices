@@ -1,12 +1,25 @@
 -- practice03
 -- 문제 1. 
 -- 현재 급여가 많은 직원부터 직원의 사번, 이름, 그리고 연봉을 출력 하시오.
+select E.emp_no, E.first_name, S.salary
+	from employees E left join salaries S on E.emp_no = S.emp_no left join titles T on E.emp_no = T.emp_no
+    where T.to_date = '9999-01-01'
+    group by E.emp_no
+    order by S.salary desc;
 
 -- 문제2.
 -- 전체 사원의 사번, 이름, 현재 직책을 이름 순서로 출력하세요.
+select E.emp_no, E.first_name, T.title
+	from employees E left join titles T on E.emp_no = T.emp_no 
+    order by E.first_name asc;
 
 -- 문제3.
 -- 전체 사원의 사번, 이름, 현재 부서를 이름 순서로 출력하세요..
+-- select E.emp_no, E.first_name, DE.dept_no
+-- 	from employees E left join dept_emp DE on E.emp_no = DE.emp_no, departments DP 
+--     group by E.first_name
+-- 	order by E.first_name asc;
+
 
 -- 문제4.
 -- 전체 사원의 사번, 이름, 연봉, 직책, 부서를 모두 이름 순서로 출력합니다.
