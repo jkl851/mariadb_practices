@@ -27,19 +27,19 @@ SQL과 프로그래밍 언어의 통합 접근 중 한 형태
 
 ## INSERT, UPDATE, DELETE
 - stmt.executeUpdate(“query”); 
-
 *자바클래스내 sql 작성에서 ; 세미콜론 빼야한다.
 
-
+	
+	
 	package test;
-
+	
 	import java.sql.Connection;
 	import java.sql.DriverManager;
 	import java.sql.SQLException;
 	import java.sql.Statement;
-
+	
 	public class UpdateTest01 {
-
+	
 		public static void main(String[] args) {
 			DeptVo vo = new DeptVo();
 			vo.setNo(8L);
@@ -104,7 +104,7 @@ SQL과 프로그래밍 언어의 통합 접근 중 한 형태
 
 -  DeptVo 클래스
 
-
+	
 	package test;
 	public class DeptVo {
 		private Long no;
@@ -136,15 +136,15 @@ SQL과 프로그래밍 언어의 통합 접근 중 한 형태
 - stmt.executeQuery(“query”);
 - SELECT는 테이블을 가져와야하므로 .executeQuery 사용
 
-
-	package test;
 	
+	package test;
+		
 	import java.sql.Connection;
 	import java.sql.DriverManager;
 	import java.sql.ResultSet;
 	import java.sql.SQLException;
 	import java.sql.Statement;
-
+	
 	public class SelectTest01 {
 		public static void main(String[] args) {
 			search("pat");
