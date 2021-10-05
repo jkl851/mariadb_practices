@@ -1,6 +1,6 @@
 ## JDBC
 
-1. JDBC(Java Database Connectivity)의 정의
+1) JDBC(Java Database Connectivity)의 정의
 자바를 이용한 데이터베이스 접속과 SQL 문장의  실행, 
 그리고  실행 결과로 얻어진 데이터의 핸들링을 제공하는 방법과 절차에 관한 규약
 자바 프로그램내에서 SQL문을 실행하기 위한 자바 API
@@ -15,7 +15,7 @@ SQL과 프로그래밍 언어의 통합 접근 중 한 형태
 ![1](img/img1.png)
 
 
-2. JDBC를 이용한 데이터베이스 연결 방법
+2) JDBC를 이용한 데이터베이스 연결 방법
 1 단계 : import java.sql.*;
 2 단계 : 드라이버를 로드 한다.
 3 단계 : Connection 객체를 생성한다.
