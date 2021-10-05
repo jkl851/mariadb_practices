@@ -105,7 +105,6 @@ SQL과 프로그래밍 언어의 통합 접근 중 한 형태
 -  DeptVo 클래스
 
 
-
 	package test;
 	public class DeptVo {
 		private Long no;
@@ -136,7 +135,6 @@ SQL과 프로그래밍 언어의 통합 접근 중 한 형태
 ## SELECT
 - stmt.executeQuery(“query”);
 - SELECT는 테이블을 가져와야하므로 .executeQuery 사용
-
 
 
 	package test;
