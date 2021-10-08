@@ -8,10 +8,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import bookmall.vo.CartVo;
+import bookmall.vo.Order_bookVo;
 
-public class CartDao {
-	public boolean insert(CartVo vo) {
+public class Order_bookDao {
+	public boolean insert(Order_bookVo vo) {
 		boolean result = false;
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -20,13 +20,15 @@ public class CartDao {
 			conn = getConnection();
 			
 			//3. SQL 준비
-			String sql = "insert into cart values(?, ?, ?)";
+			String sql = "insert into order_book values(?, ?, ?, ?)";
 			pstmt = conn.prepareStatement(sql);
 			
 			//4. 바인딩(binding)
-			pstmt.setLong(1, vo.getMember_no());
+			pstmt.setLong(1, vo.getNo());
 			pstmt.setLong(2, vo.getBook_no());
 			pstmt.setLong(3, vo.getAmount());
+			pstmt.setLong(4, vo.getPrice());
+
 			
 			//5. SQL 실행
 			int count = pstmt.executeUpdate();
@@ -67,8 +69,8 @@ public class CartDao {
 		return conn;
 	}
 
-	public List<CartVo> findAll() {
-		List<CartVo> result = new ArrayList<>();
+	public List<Order_bookVo> findAll() {
+		List<Order_bookVo> result = new ArrayList<>();
 		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -79,8 +81,8 @@ public class CartDao {
 			
 			//3. SQL 준비
 			String sql = 
-				"   select member_no, book_no, amount" +
-				"     from cart";
+				"   select no, book_no, amount, price" +
+				"     from order_book" + " order by no";
 			pstmt = conn.prepareStatement(sql);
 			
 			//4. 바인딩(binding)
@@ -89,14 +91,16 @@ public class CartDao {
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
-				Long member_no = rs.getLong(1);
+				Long no = rs.getLong(1);
 				Long book_no = rs.getLong(2);
 				Long amount = rs.getLong(3);
+				Long price = rs.getLong(4);
 				
-				CartVo vo = new CartVo();
-				vo.setMember_no(member_no);
+				Order_bookVo vo = new Order_bookVo();
+				vo.setNo(no);
 				vo.setBook_no(book_no);
 				vo.setAmount(amount);
+				vo.setPrice(price);
 				
 				result.add(vo);
 			}
@@ -123,46 +127,4 @@ public class CartDao {
 		return result;
 	}
 
-	public boolean update(Long member_no, Long amount) {
-		boolean result = false;
-		
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		
-		try {
-			conn = getConnection();
-			
-			//3. SQL 준비
-			String sql = 
-				"update cart" +
-				"   set amount=?" +
-				" where member_no=?";
-			pstmt = conn.prepareStatement(sql);
-			
-			//4. 바인딩(binding)
-			pstmt.setLong(1, amount);
-			pstmt.setLong(2, member_no);
-			
-			//5. SQL 실행
-			int count = pstmt.executeUpdate();
-			
-			result = count == 1;
-		} catch (SQLException e) {
-			System.out.println("error:" + e);
-		} finally {
-			// clean up
-			try {
-				if(pstmt != null) {
-					pstmt.close();
-				}
-				if(conn != null) {
-					conn.close();
-				}
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
-		
-		return result;		
-	}
 }

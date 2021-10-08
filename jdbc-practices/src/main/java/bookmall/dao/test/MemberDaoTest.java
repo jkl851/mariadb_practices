@@ -1,15 +1,26 @@
 package bookmall.dao.test;
 
+import java.util.List;
+
+import bookmall.dao.CategoryDao;
 import bookmall.dao.MemberDao;
+import bookmall.vo.CategoryVo;
 import bookmall.vo.MemberVo;
 
 public class MemberDaoTest {
 
 	public static void main(String[] args) {
 		insertTest();
-
+		findAllTest();
 	}
 
+	private static void findAllTest() {
+	      List<MemberVo> list = new MemberDao().findAll();
+	      for(MemberVo vo : list) {
+	         System.out.println(vo);
+		}
+	}
+	
 	private static void insertTest() {
 		MemberVo vo = null;
 		MemberDao dao = new MemberDao();
